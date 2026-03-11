@@ -10,3 +10,4 @@
 *.ipr
 *.iws
 .DS_Store
+/android/local.properties

@@ -1,0 +1,32 @@
+name: memory_assistant
+description: A personal memory assistant app for 5W event recording
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  # 替换 sqflite 为 Web 兼容的存储方案
+  shared_preferences: ^2.2.2  # 用于 Web 的简单键值存储
+  # 或者使用 hive 作为更强大的替代方案
+  # hive: ^2.2.3
+  # hive_flutter: ^1.1.0
+  path: ^1.8.3
+  intl: ^0.19.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  # 添加 build_runner 用于代码生成（如果使用 hive）
+  # build_runner: ^2.4.7
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/

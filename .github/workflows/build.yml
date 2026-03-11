@@ -29,20 +29,23 @@ jobs:
     - name: Get dependencies
       run: flutter pub get
     
-    - name: Build APK
-      run: flutter build apk --release
+    - name: Clean build
+      run: flutter clean
     
-    - name: Upload APK
+    - name: Build APK
+      run: flutter build apk --release --no-tree-shake-icons
+    
+    - name: Find and Upload APK
       uses: actions/upload-artifact@v4
       with:
         name: release-apk
-        path: build/app/outputs/flutter-apk/app-release.apk
+        path: build/app/outputs/**/*.apk
     
     - name: Upload to Release
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       uses: softprops/action-gh-release@v1
       with:
-        files: build/app/outputs/flutter-apk/app-release.apk
+        files: build/app/outputs/**/*.apk
         tag_name: v${{ github.run_number }}
         name: Release v${{ github.run_number }}
         draft: false

@@ -29,8 +29,12 @@ jobs:
     - name: Get dependencies
       run: flutter pub get
     
-    - name: Build APK
-      run: flutter build apk --release --no-tree-shake-icons || echo "Flutter build reported failure but continuing..."
+    - name: Build APK (verbose)
+      run: |
+        flutter build apk --release --no-tree-shake-icons --verbose 2>&1 | tail -100
+        echo "=== Checking build outputs ==="
+        find build -name "*.apk" 2>/dev/null || echo "No APK found in build directory"
+        ls -la build/app/outputs/flutter-apk/ 2>/dev/null || echo "flutter-apk directory not found or empty"
     
     - name: Find APK
       run: |

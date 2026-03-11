@@ -36,31 +36,27 @@ jobs:
         find build -name "*.apk" 2>/dev/null || echo "No APK found in build directory"
         ls -la build/app/outputs/flutter-apk/ 2>/dev/null || echo "flutter-apk directory not found or empty"
     
-    - name: Find APK
+    - name: Find and copy APK
       run: |
         echo "Searching for APK files..."
         find . -name "*.apk" -type f 2>/dev/null
-        echo "Listing build directory..."
-        ls -la build/ 2>/dev/null || echo "build dir not found"
-        ls -la build/app/ 2>/dev/null || echo "build/app dir not found"
-        ls -la build/app/outputs/ 2>/dev/null || echo "outputs dir not found"
-        ls -la build/app/outputs/flutter-apk/ 2>/dev/null || echo "flutter-apk dir not found"
+        # Create output directory and copy APK
+        mkdir -p build/app/outputs/flutter-apk
+        cp ./android/app/build/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/ 2>/dev/null || \
+        cp ./android/app/build/outputs/apk/release/app-release-unsigned.apk build/app/outputs/flutter-apk/app-release.apk 2>/dev/null || \
+        echo "APK copy failed"
     
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
         name: release-apk
-        path: |
-          build/**/*.apk
-        if-no-files-found: warn
+        path: build/app/outputs/flutter-apk/app-release.apk
     
     - name: Upload to Release
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       uses: softprops/action-gh-release@v1
       with:
-        files: |
-          build/app/outputs/flutter-apk/*.apk
-          build/**/*.apk
+        files: build/app/outputs/flutter-apk/app-release.apk
         tag_name: v${{ github.run_number }}
         name: Release v${{ github.run_number }}
         draft: false

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:memory_assistant/models/event.dart';
-import 'package:memory_assistant/services/database_service.dart';
-import 'package:memory_assistant/widgets/event_card.dart';
-import 'package:memory_assistant/widgets/input_dialog.dart';
+import 'package:rumber_me/models/event.dart';
+import 'package:rumber_me/services/database_service.dart';
+import 'package:rumber_me/widgets/event_card.dart';
+import 'package:rumber_me/widgets/input_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -63,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('记忆助手'),
+        title: const Text('记忆梦核'),
         actions: [
           IconButton(
             icon: const Icon(Icons.info_outline),

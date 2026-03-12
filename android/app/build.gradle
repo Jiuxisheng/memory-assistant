@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace "com.example.memory_assistant"
+    namespace "com.example.rumber_me"
     compileSdk 34
 
     compileOptions {
@@ -18,16 +18,31 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.example.memory_assistant"
+        applicationId "com.example.rumber_me"
         minSdk 21
         targetSdk 34
         versionCode 1
         versionName "1.0.0"
     }
 
+    signingConfigs {
+        debug {
+            storeFile file(System.getProperty('user.home') + '/.android/debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
+        release {
+            storeFile file(System.getProperty('user.home') + '/.android/debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
+    }
+
     buildTypes {
         release {
-            signingConfig null
+            signingConfig signingConfigs.release
             minifyEnabled false
             shrinkResources false
         }

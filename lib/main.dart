@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:memory_assistant/screens/home_screen.dart';
+import 'package:rumber_me/screens/home_screen.dart';
 
 void main() {
-  runApp(const MemoryAssistantApp());
+  runApp(const RumberMeApp());
 }
 
-class MemoryAssistantApp extends StatelessWidget {
-  const MemoryAssistantApp({super.key});
+class RumberMeApp extends StatelessWidget {
+  const RumberMeApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Memory Assistant',
+      title: '记忆梦核',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.deepPurple,

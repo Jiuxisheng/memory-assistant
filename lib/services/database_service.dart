@@ -17,7 +17,7 @@ class DatabaseService {
 
   Future<Database> _initDatabase() async {
     final dbPath = await getDatabasesPath();
-    final path = join(dbPath, 'memory_assistant.db');
+    final path = join(dbPath, 'rumber_me.db');
 
     return await openDatabase(
       path,
